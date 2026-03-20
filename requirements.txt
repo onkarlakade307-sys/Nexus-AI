@@ -1,0 +1,19 @@
+# Core Web Framework
+streamlit
+
+# Data Processing & Math
+pandas
+numpy
+openpyxl
+
+# Machine Learning & AI
+prophet
+scikit-learn
+
+# Visualization
+plotly
+matplotlib
+
+# Reporting & Exports
+fpdf
+xlsxwriter
