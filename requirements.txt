@@ -7,3 +7,4 @@ scikit-learn
 fpdf
 matplotlib
 xlsxwriter
+openpyxl
