@@ -359,6 +359,7 @@ def dashboard():
         s_p=st.sidebar.multiselect("Products",list(df["Product"].unique()),list(df["Product"].unique()))
         s_r=st.sidebar.multiselect("Regions",list(df["Region"].unique()),list(df["Region"].unique()))
         filtered_df=df[(df["Product"].isin(s_p)) & (df["Region"].isin(s_r))]
+
     if page=="Analytics Charts" and filtered_df is not None:
         st.plotly_chart(px.line(filtered_df,x="Date",y="Revenue",title="1. Revenue Trend Line"),use_container_width=True)
         st.plotly_chart(px.bar(filtered_df,x="Product",y="Revenue",title="2. Revenue by Product"),use_container_width=True)
@@ -440,8 +441,8 @@ def dashboard():
         else:
             st.warning("Please upload more data (at least 10 unique dates) to enable AI Forecasting.")
     elif page=="Segmentation" and filtered_df is not None:
-         seg_df = filtered_df.copy(); seg_df["Cluster"]=KMeans(n_clusters=3).fit_predict(seg_df[["Revenue","Units_Sold"]])
-         st.plotly_chart(px.scatter(seg_df,x="Revenue",y="Units_Sold",color="Cluster"),use_container_width=True)
+        seg_df = filtered_df.copy(); seg_df["Cluster"]=KMeans(n_clusters=3).fit_predict(seg_df[["Revenue","Units_Sold"]])
+        st.plotly_chart(px.scatter(seg_df,x="Revenue",y="Units_Sold",color="Cluster"),use_container_width=True)
 
     elif page=="Anomaly Detection" and filtered_df is not None:
         anomaly_df = filtered_df.copy(); anomaly_df["Anomaly"]=IsolationForest(contamination=0.05).fit_predict(anomaly_df[["Revenue","Units_Sold"]])
